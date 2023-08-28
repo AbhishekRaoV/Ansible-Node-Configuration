@@ -25,7 +25,7 @@
 
     - name: Stop instance
       delegate_to: localhost
-      ec2:
+     amazon.aws.ec2_instance:
         region: "{{ regions_list }}"
         instance_id: "{{ ansible_ec2_instance_id }}"
         state: stopped
@@ -41,7 +41,7 @@
       
     - name: Start instance
       delegate_to: localhost
-      ec2:
+     amazon.aws.ec2_instance:
         region: "{{ regions_list }}"
         instance_id: "{{ ansible_ec2_instance_id }}"
         state: running
