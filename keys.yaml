@@ -1,6 +1,0 @@
-AWS_ACCESS_KEY_ID: AKIA2ATYDNEBSDGGXMH2
-AWS_SECRET_ACCESS_KEY: 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
-regions_list: ap-south-1
-instance_ids: [i-0886824d2fc7601f7, i-015994feb66bbc85a]
-software: nginx
-change_instance_to: t2.nano

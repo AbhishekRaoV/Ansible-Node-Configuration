@@ -1,16 +1,15 @@
 ---
 - name: Change the instance type
-  vars_files:
-    - /home/ubuntu/ansible/config/keys.yaml
+  vars:
+    regions_list: "{{ regions_list }}"
+    software: "{{ software }}"
+    change_instance_to: "{{ change_instance_to }}"
   hosts: production
   serial: 1
   tasks:
     - name: Gather packages
       ansible.builtin.package_facts:
         manager: auto
-          # - name: Print the package facts
-          # ansible.builtin.debug:
-        # var: ansible_facts.packages
 
     - name: Print if package found
       ansible.builtin.debug:
@@ -32,9 +31,6 @@
         state: stopped
         wait: true
       when: "'{{ software }}' in ansible_facts.packages"
-        #    - name: don't start checking for 10 seconds
-        #      ansible.builtin.wait_for:
-        # delay: 10
 
     - name: Change instance type
       delegate_to: localhost
@@ -42,10 +38,6 @@
         aws ec2 modify-instance-attribute --instance-id {{ ansible_ec2_instance_id
         }}  --instance-type {{ change_instance_to}} --region {{ regions_list }}
       when: "'{{ software }}' in ansible_facts.packages"
-      #delegate_to: localhost
-      register: revert_result
-      tags:
-        - skip_ansible_lint
       
     - name: Start instance
       delegate_to: localhost
