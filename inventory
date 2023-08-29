@@ -2,4 +2,3 @@ localhost=jenkins@172-31-41-36
 [production]
 Node1 ansible_host=ubuntu@172.31.43.137
 Node2 ansible_host=ubuntu@172.31.45.212
-                                    `
