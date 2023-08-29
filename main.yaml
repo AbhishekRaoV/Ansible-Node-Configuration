@@ -46,3 +46,21 @@
         instance_ids: "{{ ansible_ec2_instance_id }}"
         state: running
       when: "'{{ software }}' in ansible_facts.packages"
+
+- name: Install Softwares in web server
+  hosts: web
+  become: true
+  tasks:
+  - name: Install apache2
+    apt: 
+      name: apache2
+      state: latest
+
+- name: Install software in DB server
+  hosts: db 
+  become: true
+  tasks:
+  - name: install mysql
+    apt:
+      name: mysql-server
+      state: latest
