@@ -27,7 +27,7 @@
       delegate_to: localhost
       amazon.aws.ec2_instance:
         region: "{{ regions_list }}"
-        instance_id: "{{ ansible_ec2_instance_id }}"
+        instance_ids: "{{ ansible_ec2_instance_id }}"
         state: stopped
         wait: true
       when: "'{{ software }}' in ansible_facts.packages"
@@ -43,6 +43,6 @@
       delegate_to: localhost
       amazon.aws.ec2_instance:
         region: "{{ regions_list }}"
-        instance_id: "{{ ansible_ec2_instance_id }}"
+        instance_ids: "{{ ansible_ec2_instance_id }}"
         state: running
       when: "'{{ software }}' in ansible_facts.packages"
